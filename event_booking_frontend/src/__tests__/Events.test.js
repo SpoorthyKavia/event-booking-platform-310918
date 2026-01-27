@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import Events from "../pages/Events";
 import * as eventsApi from "../api/events";
-import { renderWithProviders } from "./testUtils";
+import { renderWithProviders } from "../testUtils";
 
 jest.mock("../api/events");
 

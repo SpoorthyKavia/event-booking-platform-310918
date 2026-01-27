@@ -1,11 +1,11 @@
-import { screen } from '@testing-library/react';
-import App from './App';
-import { renderWithProviders } from './__tests__/testUtils';
+import { screen } from "@testing-library/react";
+import App from "./App";
+import { renderWithoutRouter } from "./testUtils";
 
-test('renders navbar brand and at least Home route content', () => {
-  renderWithProviders(<App />);
-  // Navbar brand is always visible
+test("renders navbar brand and Home content", () => {
+  renderWithoutRouter(<App />);
+  // Check the navbar brand (logo text)
   expect(screen.getByText(/EventBooking/i)).toBeInTheDocument();
-  // Home page heading appears at initial route "/"
+  // Assert Home page root heading is present (stable, unlikely to break)
   expect(screen.getByText(/Event Booking Platform/i)).toBeInTheDocument();
 });
