@@ -1,82 +1,79 @@
-# Lightweight React Template for KAVIA
+# Event Booking Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+This is the modern, responsive React web frontend for the Event Booking System.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- **Modern UI**: Light theme, accents (#3b82f6 primary, #06b6d4 success), surface #fff, background #f9fafb.
+- **Authentication**: Register, login, logout, JWT/refresh token handling.
+- **Event Listings**: Browse, search, view details, create/edit events (for organizers/admin).
+- **Booking**: Book tickets, select quantity, mock payment, confirmation, view your bookings.
+- **Admin**: Dashboard to manage users and events (list, enable/disable, delete).
+- **Reusable UI**: Theme-matching Buttons, Inputs, Modals, Cards.
+- **State Management**: React Query and lightweight context for auth/server state.
+- **API Integration**: All backend requests use a typed client, with error and auth handling.
+- **Loading/Error Handling**: Graceful UI for states, form validation (zod).
+- **Responsive**: Works on desktop and mobile.
 
 ## Getting Started
 
-In the project directory, you can run:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### `npm start`
+2. **Configure backend API URL (optional):**
+   - Copy `.env.example` to `.env` and adjust `REACT_APP_API_BASE` if not running backend on `http://localhost:3001`.
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-### `npm test`
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-Launches the test runner in interactive watch mode.
+## Project Structure
 
-### `npm run build`
+- `src/components/` - UI components (Button, Input, Card, Modal, Navbar, etc)
+- `src/pages/` - Route pages (Home, EventDetails, CreateEvent, EditEvent, Login, Register, Bookings, AdminDashboard)
+- `src/api/` - API client/wrappers
+- `src/context/` - Auth and user context providers
+- `src/hooks/` - Custom hooks (e.g. useAuth)
+- `src/styles/` - CSS/variables (uses CSS variables, optionally Tailwind for utilities if desired)
+- `src/App.js` - App root and router
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Environment Variables
 
-## Customization
+See `.env.example`:
 
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```
+REACT_APP_API_BASE=http://localhost:3001
 ```
 
-### Components
+## Notes
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+- If unauthenticated, users are redirected to login for protected routes; admin routes require `is_admin` status.
+- All state needed for auth is stored securely in memory/localStorage and attached to backend requests.
+- Backend should be running (by default dev port 3001).
+- For form validation, `zod` is used.
+- React Query handles server cache/state.
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## Main Dependencies
 
-## Learn More
+- `react@18`
+- `react-router-dom`
+- `axios`
+- `@tanstack/react-query`
+- `zod`
+- `classnames`
+- (optionally) `tailwindcss` for utility CSS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Backend Integration
 
-### Code Splitting
+This frontend assumes the Event Booking API as specified for backend (FastAPI, port 3001).
+Any change in backend API URL should be reflected in `.env`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
